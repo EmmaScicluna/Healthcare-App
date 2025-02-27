@@ -1,12 +1,7 @@
-import React from "react";
-import StartPage from "./StartPage"; // Import the StartPage component
+import AppNavigator from "./AppNavigator";  // Import AppNavigator
 
 function App() {
-  return (
-    <div className="App">
-      <StartPage />  {/* Display the Start Page */}
-    </div>
-  );
+  return <AppNavigator />;  // Use AppNavigator for routing
 }
 
 export default App;

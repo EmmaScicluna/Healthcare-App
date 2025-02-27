@@ -1,0 +1,114 @@
+/* Sign-In Page Container */
+/* Ensure background image fully covers the screen */
+.signin-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Keeps content on the left */
+  height: 100vh;
+  width: 100vw;
+  background: url('../images/SignInPage.png') no-repeat center center; /* Ensures full coverage */
+  background-size: cover; /* Fully covers screen without cropping */
+  background-attachment: fixed; /* Prevents scrolling issues */
+  padding-left: 10%;
+}
+
+/* Ensures no scrolling issues */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents unwanted scrolling */
+}
+
+/* Sign-In Box */
+.signin-box {
+  width: 400px; /* Adjust width as needed */
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Keeps text and buttons left-aligned */
+  text-align: left; /* Ensures text stays left-aligned */
+}
+
+/* Center only the input fields */
+.signin-input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers only email and password fields */
+}
+
+/* Input Fields */
+.signin-input {
+  width: 90%; /* Adjusted to fit inside the box */
+  max-width: 350px; /* Prevents stretching */
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: #f5f5f5;
+  text-align: left; /* Keeps text aligned correctly */
+  margin-bottom: 20px;
+}
+
+/* Title */
+.signin-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1c2d5a;
+  margin-bottom: 20px;
+}
+
+/* Sign-In Options (Remember Me & Forgot Password) */
+.signin-options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+/* Remember Me */
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Forgot Password */
+.forgot-password {
+  color: #1c2d5a;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Sign-In Button */
+.signin-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #a6c5f0;
+  color: #1c2d5a;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.signin-button:hover {
+  background-color: #8bb0e8;
+}
+
+/* Register Link */
+.register-text {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.register-link {
+  color: #1c2d5a;
+  font-weight: bold;
+  cursor: pointer;
+}
