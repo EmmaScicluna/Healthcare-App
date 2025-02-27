@@ -1,4 +1,19 @@
-import logo from './logo.svg';
+import React from "react";
+import StartPage from "./StartPage"; // Import the StartPage component
+
+function App() {
+  return (
+    <div className="App">
+      <StartPage />  {/* Display the Start Page */}
+    </div>
+  );
+}
+
+export default App;
+
+
+
+/*import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -23,4 +38,4 @@ function App() {
 }
 
 // Export the App component
-export default App;
+export default App;*/
