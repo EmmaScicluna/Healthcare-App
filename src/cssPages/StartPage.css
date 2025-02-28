@@ -21,7 +21,7 @@
   }
   
   .navbar-logo {
-    height: 60px;
+    height: 70px;
     margin-left: 20px;
   }
   
@@ -29,7 +29,7 @@
     padding: 10px 20px;
     background-color: transparent;
     border: none;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     color: #1C3F71;
     text-decoration: underline; /* Underlined text */
@@ -40,7 +40,10 @@
 }
 
 .signin-button:hover {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add drop shadow on hover */
+  background-color: transparent; /* Ensure background remains transparent on hover */
+  color: #2A5FA9; /* Lighter text color on hover */
+  text-decoration-color: #2A5FA9; /* Lighter underline color on hover */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add drop shadow on hover */
 }
   
   .content h1 {

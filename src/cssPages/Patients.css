@@ -1,0 +1,187 @@
+/* Patients Page Container */
+.patients-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Navbar */
+  .navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 2px solid #d3d3d3;
+  }
+  
+  /* Logo */
+  .navbar-logo {
+    height: 50px;
+  }
+  
+  /* Table Container */
+  .patients-content {
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 80px;
+  }
+  
+  /* Patients Header */
+  .patients-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  /* Table */
+  .patients-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .patients-table th, .patients-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .patients-table th {
+    background: #f0f0f0;
+  }
+  
+  /* Row Hover Effect */
+  .patients-table tr:hover {
+    background: #f5f5f5;
+    cursor: pointer;
+  }
+  
+  /* Medication Intake Button */
+  .medication-button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+  }
+  
+  .medication-button.yes {
+    background-color: #b0e57c;
+    color: black;
+  }
+  
+  .medication-button.no {
+    background-color: #e57c7c;
+    color: black;
+  }
+
+  /* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .page-button {
+    border: 1px solid #ddd;
+    background: white;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius: 5px;
+  }
+  
+  .page-button.active {
+    background: #1C3F71;
+    color: white;
+    font-weight: bold;
+  }
+
+  /* Medication Intake Button */
+.medication-button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .medication-button.yes {
+    background-color: #b0e57c;
+    color: black;
+  }
+  
+  .medication-button.no {
+    background-color: #e57c7c;
+    color: black;
+  }
+  
+  /* Add Hover Effect to Indicate Clickable */
+  .medication-button:hover {
+    transform: scale(1.05);
+  }
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(173, 216, 230, 0.7); /* Darker light blue drop shadow */    border-radius: 30px;
+    text-align: center;
+    border: 2px solid #add8e6; /* Light blue border */
+
+  }
+  
+  .confirm-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px; /* Adjusted padding for better appearance */
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 20px; /* Increased roundness */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add drop shadow */
+    outline: none; /* Remove outline */
+    border: none; /* Remove border */
+}
+
+.confirm-button:hover {
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Add stronger drop shadow on hover */
+}
+
+.cancel-button {
+    background-color: #e57373;
+    color: white;
+    padding: 10px 20px; /* Adjusted padding for better appearance */
+    cursor: pointer;
+    border-radius: 20px; /* Increased roundness */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add drop shadow */
+    outline: none; /* Remove outline */
+    border: none; /* Remove border */
+}
+
+.cancel-button:hover {
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Add stronger drop shadow on hover */
+}
+  
+  

@@ -84,7 +84,7 @@ html, body {
 }
 
 /* Sign-In Button */
-.signin-button {
+.signin-button2 {
   width: 100%;
   padding: 14px;
   font-size: 1.2rem;
@@ -97,7 +97,7 @@ html, body {
   margin-top: 10px;
 }
 
-.signin-button:hover {
+.signin-button2:hover {
   background-color: #8bb0e8;
 }
 

@@ -26,7 +26,7 @@ const SignIn = () => {
 
       if (caregiverSnap.exists()) {
         // User exists in caregivers collection, allow access
-        navigate("/dashboard");
+        navigate("/home");
       } else {
         // If user is not in the caregivers collection, log them out and show error
         setError("Access Denied: Only registered caregivers can sign in.");
@@ -64,7 +64,7 @@ const SignIn = () => {
             <a href="#" className="forgot-password">Forgot Password?</a>
           </div>
           {error && <p className="error">{error}</p>}
-          <button type="submit" className="signin-button">SIGN IN</button>
+          <button type="submit" className="signin-button2">SIGN IN</button>
         </form>
         <p className="register-text">
           Don't have a registered account? <span onClick={() => navigate('/register')} className="register-link">Register</span>

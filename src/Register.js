@@ -81,7 +81,7 @@ const Register = () => {
             className="signin-input"
           />
           {error && <p className="error">{error}</p>}
-          <button type="submit" className="signin-button">REGISTER</button>
+          <button type="submit" className="signin-button2">REGISTER</button>
         </form>
         <p className="register-text">
           Already have an account? <span onClick={() => navigate('/signin')} className="register-link">Sign in</span>
