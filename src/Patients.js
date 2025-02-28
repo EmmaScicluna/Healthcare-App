@@ -15,7 +15,7 @@ const Patients = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
-  const patientsPerPage = 10;
+  const patientsPerPage = 9;
   const navigate = useNavigate();
   
   const todayDate = dayjs().format("YYYY-MM-DD");
@@ -70,7 +70,7 @@ const Patients = () => {
       const patientRef = doc(db, "patients", selectedPatient.id);
       await updateDoc(patientRef, { medicationIntake: newStatus, lastUpdated: todayDate });
 
-      // Update UI immediately
+      // Update UI instantly
       setPatients((prevPatients) =>
         prevPatients.map((patient) =>
           patient.id === selectedPatient.id ? { ...patient, medicationIntake: newStatus } : patient
@@ -97,7 +97,11 @@ const Patients = () => {
   const currentPatients = filteredPatients.slice(indexOfFirstPatient, indexOfLastPatient);
 
   // Change Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= Math.ceil(filteredPatients.length / patientsPerPage)) {
+      setCurrentPage(pageNumber);
+    }
+  };
 
   return (
     <div className="patients-container">
@@ -159,6 +163,17 @@ const Patients = () => {
             ))}
           </tbody>
         </table>
+
+        {/* Pagination Controls */}
+        <div className="pagination">
+          <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>❮</button>
+          {Array.from({ length: Math.ceil(filteredPatients.length / patientsPerPage) }, (_, i) => (
+            <button key={i + 1} className={`page-button ${currentPage === i + 1 ? "active" : ""}`} onClick={() => paginate(i + 1)}>
+              {i + 1}
+            </button>
+          ))}
+          <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === Math.ceil(filteredPatients.length / patientsPerPage)}>❯</button>
+        </div>
 
         {/* Custom Modal for Confirmation */}
         <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal">
