@@ -137,3 +137,86 @@ body {
     padding: 10px;
     cursor: pointer;
 }
+
+/* Edit & Save Buttons */
+.edit-button, .save-button {
+    background-color: #1C3F71;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 10px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.edit-button:hover, .save-button:hover {
+    background-color: #16305a;
+}
+
+/* Position Edit Button */
+.edit-button {
+    position: absolute;
+    top: 100px;
+    right: 20px;
+}
+
+/* Position Save Button */
+.save-button {
+    position: absolute;
+    top: 100px;
+    right: 120px;
+}
+
+/* Style Inputs in Edit Mode */
+.profile-section input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Make Table Inputs Look Nice */
+.profile-medications-table input {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Modal Styling */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.confirm-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.cancel-button {
+    background-color: #e57373;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}

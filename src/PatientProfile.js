@@ -11,8 +11,9 @@ Modal.setAppElement("#root"); // Ensures accessibility
 const PatientProfile = () => {
   const { id } = useParams(); // Firestore document ID
   const [patient, setPatient] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedMedication, setSelectedMedication] = useState(null);
+  const [editMode, setEditMode] = useState(false); // Toggle Edit Mode
+  const [editedPatient, setEditedPatient] = useState(null); // Stores updated data
+  const [modalIsOpen, setModalIsOpen] = useState(false); // Confirm Save Modal
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +22,17 @@ const PatientProfile = () => {
       const patientSnap = await getDoc(patientRef);
 
       if (patientSnap.exists()) {
-        setPatient({ id: patientSnap.id, ...patientSnap.data() });
+        const patientData = patientSnap.data();
+
+        // Ensure medications is always an array
+        const formattedPatient = {
+          id: patientSnap.id,
+          ...patientData,
+          medications: patientData.medications ? patientData.medications : [] // Default to empty array
+        };
+
+        setPatient(formattedPatient);
+        setEditedPatient(formattedPatient);
       } else {
         console.error("Patient not found");
       }
@@ -30,41 +41,76 @@ const PatientProfile = () => {
     fetchPatient();
   }, [id]);
 
-  // Open modal and store selected medication
-  const openModal = (medication) => {
-    setSelectedMedication(medication);
+  // Toggle Edit Mode
+  const handleEdit = () => {
+    setEditMode(!editMode);
+  };
+
+  // Handle input changes for text fields
+  const handleInputChange = (field, value) => {
+    setEditedPatient((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  // Handle input change for medications
+  const handleMedicationChange = (index, field, value) => {
+    const updatedMedications = [...editedPatient.medications];
+    updatedMedications[index][field] = value;
+    setEditedPatient((prev) => ({
+      ...prev,
+      medications: updatedMedications,
+    }));
+  };
+
+  // Add a new medication row
+  const addMedication = () => {
+    setEditedPatient((prev) => ({
+      ...prev,
+      medications: prev.medications
+        ? [...prev.medications, { name: "", dosage: "", frequency: "", purpose: "" }]
+        : [{ name: "", dosage: "", frequency: "", purpose: "" }]
+    }));
+  };
+
+  // Remove a medication row
+  const removeMedication = (index) => {
+    if (!editedPatient.medications || editedPatient.medications.length === 0) return;
+
+    const updatedMedications = [...editedPatient.medications];
+    updatedMedications.splice(index, 1);
+
+    setEditedPatient((prev) => ({
+      ...prev,
+      medications: updatedMedications,
+    }));
+  };
+
+  // Open Confirm Modal
+  const openConfirmModal = () => {
     setModalIsOpen(true);
   };
 
-  // Close modal
-  const closeModal = () => {
+  // Close Confirm Modal
+  const closeConfirmModal = () => {
     setModalIsOpen(false);
-    setSelectedMedication(null);
   };
 
-  // Confirm Medication Update
-  const confirmMedicationUpdate = async () => {
-    if (!patient || !selectedMedication) return;
-
-    const updatedMedications = patient.medications.map((med) =>
-      med.name === selectedMedication.name
-        ? { ...med, taken: med.taken === "Yes" ? "No" : "Yes" }
-        : med
-    );
+  // Save Changes to Firebase
+  const saveChanges = async () => {
+    if (!editedPatient) return;
 
     try {
-      const patientRef = doc(db, "patients", patient.id);
-      await updateDoc(patientRef, { medications: updatedMedications });
+      const patientRef = doc(db, "patients", editedPatient.id);
+      await updateDoc(patientRef, editedPatient);
 
-      setPatient((prevPatient) => ({
-        ...prevPatient,
-        medications: updatedMedications,
-      }));
+      setPatient(editedPatient); // Update UI
+      setEditMode(false); // Exit Edit Mode
+      closeConfirmModal(); // Close Confirmation Modal
     } catch (error) {
-      console.error("Error updating medication:", error);
+      console.error("Error updating patient:", error);
     }
-
-    closeModal();
   };
 
   if (!patient) {
@@ -90,37 +136,57 @@ const PatientProfile = () => {
 
       {/* Page Content */}
       <div className="profile-content">
-        {/* Patient Name */}
-        <h1 className="profile-patient-name">{patient.name}</h1>
+        {/* Edit Button */}
+        <button className="edit-button" onClick={handleEdit}>
+          {editMode ? "Cancel" : "Edit"}
+        </button>
 
-        {/* Patient Details Section */}
+        {/* Save Button (Visible in Edit Mode) */}
+        {editMode && (
+          <button className="save-button" onClick={openConfirmModal}>
+            Save Changes
+          </button>
+        )}
+
+        {/* Patient Name */}
+        <h1 className="profile-patient-name">
+          {editMode ? (
+            <input type="text" value={editedPatient.name} onChange={(e) => handleInputChange("name", e.target.value)} />
+          ) : editedPatient.name}
+        </h1>
+
+        {/* Patient Details Section (Editable) */}
         <div className="profile-section">
           <h2>Patient Details</h2>
-          <p><strong>ID Number:</strong> {patient.idNumber}</p>
-          <p><strong>Gender:</strong> {patient.gender}</p>
-          <p><strong>Age:</strong> {patient.age}</p>
-          <p><strong>Condition:</strong> {patient.condition}</p>
-          <p><strong>Ward:</strong> {patient.ward}</p>
-          <p><strong>Medication Intake:</strong> {patient.medicationIntake}</p>
+          {["idNumber", "gender", "age", "condition", "ward"].map((field) => (
+            <p key={field}>
+              <strong>{field.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}:</strong>
+              {editMode ? (
+                <input
+                  type="text"
+                  value={editedPatient[field]}
+                  onChange={(e) => handleInputChange(field, e.target.value)}
+                />
+              ) : editedPatient[field]}
+            </p>
+          ))}
         </div>
 
-        {/* Contact Information Section */}
+        {/* Contact Information Section (Editable) */}
         <div className="profile-section">
           <h2>Contact Information</h2>
-          <p><strong>ICE Number:</strong> {patient.iceNumber}</p>
-          <p><strong>ICE Email:</strong> {patient.iceEmail}</p>
-          <p><strong>Relationship to Patient:</strong> {patient.relationship}</p>
-          <p><strong>Primary Caregiver:</strong> {patient.primaryCaregiver}</p>
-        </div>
-
-        {/* Medical History Section */}
-        <div className="profile-section">
-          <h2>Medical History</h2>
-          <ul>
-            {patient.medicalHistory?.map((condition, index) => (
-              <li key={index}>{condition}</li>
-            ))}
-          </ul>
+          {["iceNumber", "iceEmail", "relationship", "primaryCaregiver"].map((field) => (
+            <p key={field}>
+              <strong>{field.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}:</strong>
+              {editMode ? (
+                <input
+                  type="text"
+                  value={editedPatient[field]}
+                  onChange={(e) => handleInputChange(field, e.target.value)}
+                />
+              ) : editedPatient[field]}
+            </p>
+          ))}
         </div>
 
         {/* Medications Section */}
@@ -133,40 +199,37 @@ const PatientProfile = () => {
                 <th>Dosage</th>
                 <th>Frequency</th>
                 <th>Purpose</th>
-                <th>Intake</th>
+                {editMode && <th>Action</th>}
               </tr>
             </thead>
             <tbody>
-              {patient.medications?.map((med, index) => (
+              {editedPatient.medications?.map((med, index) => (
                 <tr key={index}>
-                  <td>{med.name}</td>
-                  <td>{med.dosage}</td>
-                  <td>{med.frequency}</td>
-                  <td>{med.purpose}</td>
-                  <td>
-                    <button
-                      className={`medication-button ${med.taken === "Yes" ? "yes" : "no"}`}
-                      onClick={() => openModal(med)}
-                    >
-                      {med.taken}
-                    </button>
-                  </td>
+                  {["name", "dosage", "frequency", "purpose"].map((field) => (
+                    <td key={field}>
+                      {editMode ? (
+                        <input
+                          type="text"
+                          value={med[field]}
+                          onChange={(e) => handleMedicationChange(index, field, e.target.value)}
+                        />
+                      ) : med[field]}
+                    </td>
+                  ))}
+                  {editMode && <td><button onClick={() => removeMedication(index)}>Remove</button></td>}
                 </tr>
               ))}
             </tbody>
           </table>
+          {editMode && <button onClick={addMedication}>Add Medication</button>}
         </div>
 
         {/* Confirmation Modal */}
-        <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal">
-          <h2>CareTrack</h2>
-          <p>
-            Are you sure you want to mark the medication{" "}
-            <strong>{selectedMedication?.name}</strong>{" "}
-            as {selectedMedication?.taken === "Yes" ? "NOT taken?" : "taken?"}
-          </p>
-          <button className="confirm-button" onClick={confirmMedicationUpdate}>Confirm</button>
-          <button className="cancel-button" onClick={closeModal}>Cancel</button>
+        <Modal isOpen={modalIsOpen} onRequestClose={closeConfirmModal} className="modal">
+          <h2>Confirm Changes</h2>
+          <p>Are you sure you want to update this patient's information?</p>
+          <button className="confirm-button" onClick={saveChanges}>Confirm</button>
+          <button className="cancel-button" onClick={closeConfirmModal}>Cancel</button>
         </Modal>
       </div>
     </div>
