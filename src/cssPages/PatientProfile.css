@@ -1,0 +1,139 @@
+/* Ensure Full Page Scroll */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Main Container for Patient Profile */
+.profile-container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px; /* Ensures navbar does not overlap content */
+    overflow-y: auto; /* Enables full-page scrolling */
+}
+
+/* Use SAME NAVBAR as Patients Page */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 2px solid #d3d3d3;
+    z-index: 1000;
+}
+
+/* Navbar Logo */
+.navbar-logo {
+    height: 55px;
+}
+
+/* 🔹 FORCE WHOLE PAGE TO SCROLL 🔹 */
+.profile-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 120px; /* Pushes content below fixed navbar */
+    padding-bottom: 50px; /* Extra space at bottom */
+    flex-grow: 1; /* Allows full height for scrolling */
+    overflow-y: visible; /* Allows scrolling */
+}
+
+/* Ensure Body Scrolls if Content Overflows */
+body {
+    overflow-y: auto !important;
+}
+
+/* Patient Name */
+.profile-patient-name {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Patient Details Section */
+.profile-section {
+    background: #f8f9fc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Section Titles */
+.profile-section h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    border-bottom: 2px solid #d1d1d1;
+    padding-bottom: 5px;
+}
+
+/* Text Styling */
+.profile-section p {
+    margin: 5px 0;
+}
+
+/* Medication Table */
+.profile-medications-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.profile-medications-table th, .profile-medications-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.profile-medications-table th {
+    background: #e9f5ff;
+}
+
+/* Medication Button */
+.profile-medications-table td button {
+    padding: 5px 10px;
+    background: #4285F4;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Custom Modal */
+.profile-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons */
+.profile-confirm-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.profile-cancel-button {
+    background-color: #e57373;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}

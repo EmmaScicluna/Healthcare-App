@@ -24,12 +24,13 @@ const Patients = () => {
     const fetchPatients = async () => {
       const querySnapshot = await getDocs(collection(db, "patients"));
       const patientList = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
+        id: doc.id, // Firestore document ID
         ...doc.data(),
       }));
-      
+
+      // Ensure daily reset of medication intake
       const updatedPatients = patientList.map((patient) => {
-        if (patient.lastUpdated !== todayDate) {
+        if (!patient.lastUpdated || patient.lastUpdated !== todayDate) {
           return { ...patient, medicationIntake: "No", lastUpdated: todayDate };
         }
         return patient;
@@ -37,8 +38,9 @@ const Patients = () => {
 
       setPatients(updatedPatients);
 
+      // Update Firestore if medication intake needs reset
       updatedPatients.forEach(async (patient) => {
-        if (patient.lastUpdated !== todayDate) {
+        if (!patient.lastUpdated || patient.lastUpdated !== todayDate) {
           const patientRef = doc(db, "patients", patient.id);
           await updateDoc(patientRef, { medicationIntake: "No", lastUpdated: todayDate });
         }
@@ -85,10 +87,10 @@ const Patients = () => {
 
   // Filter patients by search input
   const filteredPatients = patients.filter((patient) =>
-    patient.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    patient.idNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    patient.ward.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    patient.medicationIntake.toLowerCase().includes(searchTerm.toLowerCase())
+    (patient.name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (patient.idNumber || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (patient.ward || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (patient.medicationIntake || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Pagination Logic
@@ -107,7 +109,9 @@ const Patients = () => {
     <div className="patients-container">
       {/* Navigation Bar */}
       <nav className="navbar">
-        <img src={logo} alt="CareTrack Logo" className="navbar-logo" />
+        <div className="navbar-left">
+          <img src={logo} alt="CareTrack Logo" className="navbar-logo" />
+        </div>
         <ul className="nav-links">
           <li><a href="/home">Home</a></li>
           <li><a href="/patients">Patients</a></li>
@@ -146,17 +150,19 @@ const Patients = () => {
           <tbody>
             {currentPatients.map((patient) => (
               <tr key={patient.id}>
-                <td onClick={() => navigate(`/patient/${patient.id}`)}>{patient.name}</td>
-                <td>{patient.idNumber}</td>
-                <td>{patient.iceNumber}</td>
-                <td>{patient.iceEmail}</td>
-                <td>{patient.ward}</td>
+                <td onClick={() => navigate(`/patient/${patient.id}`)} style={{ cursor: "pointer" }}>
+                  {patient.name || "N/A"}
+                </td>
+                <td>{patient.idNumber || "N/A"}</td>
+                <td>{patient.iceNumber || "N/A"}</td>
+                <td>{patient.iceEmail || "N/A"}</td>
+                <td>{patient.ward || "N/A"}</td>
                 <td>
                   <button
                     className={`medication-button ${patient.medicationIntake === "Yes" ? "yes" : "no"}`}
                     onClick={() => openModal(patient)}
                   >
-                    {patient.medicationIntake}
+                    {patient.medicationIntake || "No"}
                   </button>
                 </td>
               </tr>
@@ -180,7 +186,7 @@ const Patients = () => {
           <h2>CareTrack</h2>
           <p>
             Are you sure you want to confirm that the patient{" "}
-            <strong>{selectedPatient?.name}</strong>{" "}
+            <strong>{selectedPatient?.name || "this patient"}</strong>{" "}
             {selectedPatient?.medicationIntake === "Yes"
               ? "DID NOT take the medication?"
               : "took the medication?"}

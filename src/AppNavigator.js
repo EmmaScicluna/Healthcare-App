@@ -4,7 +4,7 @@ import SignIn from "./SignIn";
 import Register from "./Register";
 import Home from "./Home";
 import Patients from "./Patients";
-import PatientDetails from "./PatientDetails"; // Add this for individual patient pages
+import PatientProfile from "./PatientProfile"; // Updated: Now correctly links individual patient pages
 
 function AppNavigator() {
   return (
@@ -15,7 +15,7 @@ function AppNavigator() {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
         <Route path="/patients" element={<Patients />} />
-        <Route path="/patient/:id" element={<PatientDetails />} /> {/* Individual Patient Page */}
+        <Route path="/patient/:id" element={<PatientProfile />} /> {/* Individual Patient Page */}
       </Routes>
     </Router>
   );
