@@ -1,0 +1,312 @@
+/* 🔹 Ensure Full Page Scroll */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* 🔹 Main Tasks Page */
+.tasks-container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px; /* Ensures navbar does not overlap content */
+}
+
+/* 🔹 Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 2px solid #d3d3d3;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    height: 55px;
+}
+
+/* 🔹 Content Styling */
+.tasks-content {
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 100px;
+    padding-bottom: 50px;
+}
+
+/* 🔹 Tasks Header */
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* 🔹 Add Task Button */
+.add-task-btn {
+    background-color: #1C3F71;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.add-task-btn:hover {
+    background-color: #16305a;
+}
+
+/* 🔹 Task List */
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: #e9f5ff;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 Task Description */
+.task-item span {
+    flex: 1;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+/* 🔹 Fixed Size for Date and Status Boxes */
+.deadline-box, .status {
+    min-width: 140px;
+    max-width: 140px;
+    text-align: center;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 🔹 Deadline Box */
+.deadline-box {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+/* 🔹 Status Colors */
+.status.not-started {
+    background-color: #ffcccb;
+    color: black;
+}
+
+.status.in-progress {
+    background-color: #add8e6;
+    color: black;
+}
+
+.status.done {
+    background-color: #90ee90;
+    color: black;
+}
+
+/* 🔹 Edit Button */
+.edit-btn {
+    background-color: #1C3F71;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+    margin-left: 10px;
+}
+
+.edit-btn:hover {
+    background-color: #16305a;
+}
+
+/* 🔹 Modals (Add/Edit Task) */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 420px;
+    max-width: 90%;
+}
+
+/* 🔹 Input Fields in Modals */
+.modal input,
+.modal select {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* 🔹 Modal Buttons */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* 🔹 Save/Add Button */
+.save-button-2, .add-button-2 {
+    background-color: #1C3F71;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+    flex: 1;
+    max-width: 150px;
+    text-align: center;
+}
+
+.save-button-2:hover, .add-button-2:hover {
+    background-color: #16305a;
+}
+
+/* 🔹 Cancel Button */
+.cancel-button-2 {
+    background-color: #e57373;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+    flex: 1;
+    max-width: 150px;
+    text-align: center;
+}
+
+.cancel-button-2:hover {
+    background-color: #c0392b;
+}
+
+/* 🔹 Ensure Buttons Align Properly */
+.modal-buttons button {
+    width: 48%;
+}
+
+/* 🔹 Checkbox Styling */
+.task-item input[type="checkbox"] {
+    transform: scale(1.3);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* 🔹 Align Modal Headers */
+.modal h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* 🔹 Confirmation Modal */
+.confirmation-modal {
+    text-align: center;
+    padding: 20px;
+}
+
+/* 🔹 Yes/No Buttons in Confirmation */
+.confirm-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.confirm-button-2, .cancel-button-2 {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    max-width: 150px;
+}
+
+/* Confirm Button */
+.confirm-button-2 {
+    background-color: #4caf50;
+    color: white;
+}
+
+.confirm-button-2:hover {
+    background-color: #388e3c;
+}
+
+/* Cancel Button */
+.cancel-button-2 {
+    background-color: #e57373;
+    color: white;
+}
+
+.cancel-button-2:hover {
+    background-color: #c0392b;
+}
+
+/* 🔹 Ensure Responsive Layout */
+@media (max-width: 600px) {
+    .tasks-content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .modal {
+        width: 90%;
+    }
+
+    .modal-buttons, .confirm-modal-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .save-button-2, .cancel-button-2, .add-button-2, .confirm-button-2 {
+        margin-top: 10px;
+        width: 45%;
+    }
+}
