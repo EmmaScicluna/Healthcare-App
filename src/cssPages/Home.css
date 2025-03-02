@@ -1,34 +1,33 @@
-/* Full height container to fit the screen */
+/* 🔹 Full Page Styling */
 .home-container {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    background-color: #D4E9FF; /* Light Blue Background */
     background-size: cover;
     background-position: center;
+    padding-top: 80px; /* Ensures content starts below navbar */
 }
 
-/* Navigation Bar */
+/* 🔹 Navigation Bar */
 .navbar {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Stronger Shadow */
+    z-index: 1000;
 }
 
-/* Logo */
 .navbar-logo {
     height: 70px;
 }
 
-/* Navigation Links */
 .nav-links {
     list-style: none;
     display: flex;
@@ -50,7 +49,6 @@
     text-decoration: underline;
 }
 
-/* Logout Button */
 .logout-button {
     background-color: transparent;
     border: none;
@@ -67,19 +65,100 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Placeholder Content */
-.home-content {
+/* 🔹 Welcome Section */
+.welcome-section {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 100px; /* Starts right below the navbar */
+    width: 80%;
     text-align: center;
-    margin-top: 100px; /* Push content down */
 }
 
-.home-content h1 {
-    font-size: 55px;
+.welcome-section h1 {
+    font-size: 36px;
     font-weight: bold;
     color: #1C3F71;
 }
 
-.home-content p {
-    font-size: 20px;
+.welcome-section p {
+    font-size: 18px;
     color: #575757;
+}
+
+/* 🔹 Home Sections (Patients, Tasks, etc.) */
+.home-section {
+    width: 80%;
+    max-width: 1200px;
+    margin-top: 18px;
+    padding: 20px;
+    background: white; /* Keeps sections white */
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+}
+
+/* 🔹 Section Header */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.view-more-btn {
+    background-color: #1C3F71;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.view-more-btn:hover {
+    background-color: #16305a;
+}
+
+/* 🔹 Preview List */
+.preview-list {
+    display: flex;
+    gap: 15px;
+    justify-content: space-around;
+}
+
+/* 🔹 Preview Card */
+.preview-card {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.preview-card h3 {
+    color: #1C3F71;
+    font-size: 18px;
+}
+
+.preview-card p {
+    font-size: 14px;
+    color: #575757;
+}
+
+/* 🔹 Responsive Styles */
+@media (max-width: 768px) {
+    .preview-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .preview-card {
+        width: 90%;
+    }
 }
