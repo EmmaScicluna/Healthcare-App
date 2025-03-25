@@ -6,6 +6,9 @@ import Home from "./Home";
 import Patients from "./Patients";
 import PatientProfile from "./PatientProfile"; // Ensures individual patient pages work
 import Tasks from "./Tasks"; // Tasks page
+import Pepper from "./Pepper"; // Pepper page
+//import Exercise from "./Exercise"; // Exercise page         <Route path="/exercise" element={<Exercise />} />
+
 
 function AppNavigator() {
   return (
@@ -18,6 +21,7 @@ function AppNavigator() {
         <Route path="/patients" element={<Patients />} />
         <Route path="/patient/:id" element={<PatientProfile />} /> {/* Individual Patient Page */}
         <Route path="/tasks" element={<Tasks />} /> 
+        <Route path="/pepper" element={<Pepper />} />
       </Routes>
     </Router>
   );

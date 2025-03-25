@@ -1,0 +1,114 @@
+.pepper-container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding-top: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Shared navbar */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .navbar-logo {
+    height: 55px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: #1C3F71;
+    font-weight: 500;
+  }
+  
+  .logout-button {
+    background: none;
+    border: none;
+    color: #1C3F71;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .pepper-content {
+    width: 90%;
+    max-width: 1000px;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+  }
+  
+  .pepper-content h1 {
+    color: #1C3F71;
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .intro-text {
+    color: #575757;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    margin-top: 30px;
+  }
+  
+  .section h2 {
+    color: #1C3F71;
+    margin-bottom: 10px;
+  }
+  
+  .pepper-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .pepper-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .examples li {
+    background: #D4E9FF;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .tip-text {
+    font-size: 15px;
+    color: #333;
+    background: #e9f5ff;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .pepper-image-section {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .pepper-image {
+    max-width: 180px;
+    height: auto;
+  }
+  

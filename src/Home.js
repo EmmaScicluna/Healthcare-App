@@ -54,7 +54,7 @@ const Home = () => {
           <li><a href="/patients">Patients</a></li>
           <li><a href="/tasks">Tasks</a></li>
           <li><a href="/pepper">Pepper</a></li>
-          <li><a href="/help">Help</a></li>
+          <li><a href="/exercise">Exercise</a></li>
         </ul>
         <button className="logout-button" onClick={handleLogout}>Log out</button>
       </nav>
