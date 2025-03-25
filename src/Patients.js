@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 import "./cssPages/Patients.css";
 import logo from "./images/caretrackLogo.png";
 import dayjs from "dayjs"; // For handling date logic
 import Modal from "react-modal"; // Import Modal for custom popup
 
-Modal.setAppElement("#root"); // Ensures accessibility
+Modal.setAppElement("#root");
 
 const Patients = () => {
   const [patients, setPatients] = useState([]);
@@ -17,40 +17,47 @@ const Patients = () => {
   const [selectedPatient, setSelectedPatient] = useState(null);
   const patientsPerPage = 9;
   const navigate = useNavigate();
-  
+
   const todayDate = dayjs().format("YYYY-MM-DD");
 
   useEffect(() => {
-    const fetchPatients = async () => {
-      const querySnapshot = await getDocs(collection(db, "patients"));
-      const patientList = querySnapshot.docs.map((doc) => ({
-        id: doc.id, // Firestore document ID
-        ...doc.data(),
-      }));
-
-      // Ensure daily reset of medication intake
-      const updatedPatients = patientList.map((patient) => {
-        if (!patient.lastUpdated || patient.lastUpdated !== todayDate) {
-          return { ...patient, medicationIntake: "No", lastUpdated: todayDate };
-        }
-        return patient;
-      });
-
-      setPatients(updatedPatients);
-
-      // Update Firestore if medication intake needs reset
-      updatedPatients.forEach(async (patient) => {
+    const unsubscribe = onSnapshot(collection(db, "patients"), async (snapshot) => {
+      const updatedPatients = [];
+  
+      for (const docSnap of snapshot.docs) {
+        const patient = { id: docSnap.id, ...docSnap.data() };
+  
+        // Check if the last updated is not today
         if (!patient.lastUpdated || patient.lastUpdated !== todayDate) {
           const patientRef = doc(db, "patients", patient.id);
-          await updateDoc(patientRef, { medicationIntake: "No", lastUpdated: todayDate });
+  
+          // 🔄 Update Firestore to reset the values
+          await updateDoc(patientRef, {
+            medicationIntake: "No",
+            confirmedByPatient: "No",
+            lastUpdated: todayDate,
+          });
+  
+          // Push the updated version into local state
+          updatedPatients.push({
+            ...patient,
+            medicationIntake: "No",
+            confirmedByPatient: "No",
+            lastUpdated: todayDate,
+          });
+        } else {
+          updatedPatients.push(patient);
         }
-      });
-    };
+      }
+  
+      setPatients(updatedPatients);
+    });
+  
+    return () => unsubscribe();
+  }, [todayDate]);
+  
 
-    fetchPatients();
-  }, []);
-
-  // Open modal and store selected patient
+  // Open modal and store selected patient (for medication intake update only)
   const openModal = (patient) => {
     setSelectedPatient(patient);
     setModalIsOpen(true);
@@ -62,7 +69,7 @@ const Patients = () => {
     setSelectedPatient(null);
   };
 
-  // Confirm Medication Intake Change
+  // Confirm Medication Intake Change (this is for the caregiver action on medication intake)
   const confirmMedicationChange = async () => {
     if (!selectedPatient) return;
 
@@ -85,7 +92,7 @@ const Patients = () => {
     closeModal();
   };
 
-  // Filter patients by search input
+  // 🔹 Filter patients by search input
   const filteredPatients = patients.filter((patient) =>
     (patient.name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
     (patient.idNumber || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -145,6 +152,7 @@ const Patients = () => {
               <th>ICE Email</th>
               <th>Ward</th>
               <th>Medication Intake</th>
+              <th>Confirmed by Patient</th> {/* 🔹 Updated */}
             </tr>
           </thead>
           <tbody>
@@ -165,6 +173,14 @@ const Patients = () => {
                     {patient.medicationIntake || "No"}
                   </button>
                 </td>
+                <td>
+                  {/* 🔹 Display confirmedByPatient status in real-time */}
+                  <button
+                    className={`medication-button ${patient.confirmedByPatient === "Yes" ? "yes" : "no"}`} 
+                  >
+                    {patient.confirmedByPatient === "Yes" ? "Yes" : "No"}
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -181,7 +197,7 @@ const Patients = () => {
           <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === Math.ceil(filteredPatients.length / patientsPerPage)}>❯</button>
         </div>
 
-        {/* Custom Modal for Confirmation */}
+        {/* Custom Modal for Medication Intake Confirmation */}
         <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal">
           <h2>CareTrack</h2>
           <p>
