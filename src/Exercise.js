@@ -3,6 +3,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 import "./cssPages/Exercise.css";
 import logo from "./images/caretrackLogo.png";
+import Navbar from "./Navbar";
+
 
 // Sample list of exercises
 const exercises = [
@@ -37,17 +39,7 @@ const Exercise = () => {
   return (
     <div className="exercise-container">
       {/* Navigation Bar */}
-      <nav className="navbar">
-        <img src={logo} alt="CareTrack Logo" className="navbar-logo" />
-        <ul className="nav-links">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/patients">Patients</a></li>
-          <li><a href="/tasks">Tasks</a></li>
-          <li><a href="/pepper">Pepper</a></li>
-          <li><a href="/exercise">Exercise</a></li>
-        </ul>
-        <a href="/" className="logout-button">Log out</a>
-      </nav>
+      <Navbar />
 
       {/* Exercise Submission Log */}
       <div className="section">

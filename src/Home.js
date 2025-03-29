@@ -5,6 +5,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "./firebaseConfig";
 import "./cssPages/Home.css"; // Import CSS for styling
 import logo from "./images/caretrackLogo.png"; // Import logo
+import Navbar from "./Navbar";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -47,17 +49,7 @@ const Home = () => {
   return (
     <div className="home-container">
       {/* 🔹 Navigation Bar */}
-      <nav className="navbar">
-        <img src={logo} alt="CareTrack Logo" className="navbar-logo" />
-        <ul className="nav-links">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/patients">Patients</a></li>
-          <li><a href="/tasks">Tasks</a></li>
-          <li><a href="/pepper">Pepper</a></li>
-          <li><a href="/exercise">Exercise</a></li>
-        </ul>
-        <button className="logout-button" onClick={handleLogout}>Log out</button>
-      </nav>
+      <Navbar />
 
       {/* 🔹 Welcome Section */}
       <section className="home-section welcome-section">

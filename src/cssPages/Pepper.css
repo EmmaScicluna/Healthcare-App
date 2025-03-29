@@ -12,15 +12,17 @@
   .navbar {
     position: fixed;
     top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 15px 30px;
+    left: 0; /* Ensure it starts from the very left */
+    width: 100vw; /* Full width of the viewport */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 30px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Stronger Shadow */
     z-index: 1000;
-    border-bottom: 1px solid #ddd;
-  }
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
   
   .navbar-logo {
     height: 55px;

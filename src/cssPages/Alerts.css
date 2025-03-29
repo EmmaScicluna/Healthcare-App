@@ -1,0 +1,177 @@
+/* Alerts.css */
+.alerts-container {
+  padding: 100px 20px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif;
+}
+
+.alerts-header {
+  text-align: center;
+  font-size: 32px;
+  color: #1C3F71;
+  margin-bottom: 30px;
+}
+
+.alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.alert-item {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert-item strong {
+  font-size: 18px;
+  color: #1C3F71;
+}
+
+.alert-item span {
+  font-size: 14px;
+  color: #444;
+}
+
+.delete-icon {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #c0392b;
+  transition: transform 0.2s ease;
+}
+
+.delete-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Modal Overlay (background blur/dark if needed) */
+.ReactModal__Overlay {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.modal {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.confirm-button-2,
+.cancel-button-2 {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.confirm-button-2 {
+  background-color: #4caf50;
+  color: white;
+}
+
+.cancel-button-2 {
+  background-color: #e57373;
+  color: white;
+}
+
+.confirm-button-2:hover {
+  background-color: #388e3c;
+}
+
+.cancel-button-2:hover {
+  background-color: #c0392b;
+}
+
+/* 🔹 Navigation Bar Styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.navbar-logo {
+  height: 60px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: black;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.logout-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1C3F71;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button:hover {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Align Alerts title to left */
+.alerts-header-left {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1C3F71;
+  text-align: left;
+  margin: 100px 0 20px 20px;
+}
+
+/* 🔴 Alert Notification Badge */
+.alerts-tab {
+  position: relative;
+}

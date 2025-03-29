@@ -2,24 +2,14 @@ import React from "react";
 import "./cssPages/Pepper.css";
 import logo from "./images/caretrackLogo.png";
 import pepperImg from "./images/pepperRobot.png"; // optional image
+import Navbar from "./Navbar";
+
 
 const Pepper = () => {
   return (
     <div className="pepper-container">
       {/* Navigation Bar */}
-      <nav className="navbar">
-        <div className="navbar-left">
-          <img src={logo} alt="CareTrack Logo" className="navbar-logo" />
-        </div>
-        <ul className="nav-links">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/patients">Patients</a></li>
-          <li><a href="/tasks">Tasks</a></li>
-          <li><a href="/pepper">Pepper</a></li>
-          <li><a href="/exercise">Exercise</a></li>
-        </ul>
-        <a href="/" className="logout-button">Log out</a>
-      </nav>
+      <Navbar />
 
       <div className="pepper-content">
         <h1>Meet Pepper</h1>

@@ -4,6 +4,7 @@ import { db } from "./firebaseConfig";
 import "./cssPages/Tasks.css";
 import logo from "./images/caretrackLogo.png";
 import Modal from "react-modal";
+import Navbar from "./Navbar";
 
 Modal.setAppElement("#root");
 
@@ -81,19 +82,7 @@ const Tasks = () => {
   return (
     <div className="tasks-container">
       {/* Navigation Bar */}
-      <nav className="navbar">
-        <div className="navbar-left">
-          <img src={logo} alt="CareTrack Logo" className="navbar-logo" />
-        </div>
-        <ul className="nav-links">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/patients">Patients</a></li>
-          <li><a href="/tasks">Tasks</a></li>
-          <li><a href="/pepper">Pepper</a></li>
-          <li><a href="/exercise">Exercise</a></li>
-        </ul>
-        <a href="/" className="logout-button">Log out</a>
-      </nav>
+      <Navbar />
 
       {/* Page Content */}
       <div className="tasks-content">

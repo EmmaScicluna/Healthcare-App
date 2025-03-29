@@ -6,6 +6,7 @@ import "./cssPages/Patients.css";
 import logo from "./images/caretrackLogo.png";
 import dayjs from "dayjs"; // For handling date logic
 import Modal from "react-modal"; // Import Modal for custom popup
+import Navbar from "./Navbar";
 
 Modal.setAppElement("#root");
 
@@ -115,19 +116,7 @@ const Patients = () => {
   return (
     <div className="patients-container">
       {/* Navigation Bar */}
-      <nav className="navbar">
-        <div className="navbar-left">
-          <img src={logo} alt="CareTrack Logo" className="navbar-logo" />
-        </div>
-        <ul className="nav-links">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/patients">Patients</a></li>
-          <li><a href="/tasks">Tasks</a></li>
-          <li><a href="/pepper">Pepper</a></li>
-          <li><a href="/exercise">Exercise</a></li>
-        </ul>
-        <button className="logout-button" onClick={() => navigate("/")}>Log out</button>
-      </nav>
+      <Navbar />
 
       {/* Page Content */}
       <div className="patients-content">

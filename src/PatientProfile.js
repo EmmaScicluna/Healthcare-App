@@ -5,6 +5,8 @@ import { db } from "./firebaseConfig";
 import "./cssPages/PatientProfile.css";
 import logo from "./images/caretrackLogo.png";
 import Modal from "react-modal";
+import Navbar from "./Navbar";
+
 
 Modal.setAppElement("#root"); // Ensures accessibility
 
@@ -120,19 +122,7 @@ const PatientProfile = () => {
   return (
     <div className="profile-container">
       {/* Navigation Bar */}
-      <nav className="navbar">
-        <div className="navbar-left">
-          <img src={logo} alt="CareTrack Logo" className="navbar-logo" />
-        </div>
-        <ul className="nav-links">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/patients">Patients</a></li>
-          <li><a href="/tasks">Tasks</a></li>
-          <li><a href="/pepper">Pepper</a></li>
-          <li><a href="/exercise">Exercise</a></li>
-        </ul>
-        <button className="logout-button" onClick={() => navigate("/")}>Log out</button>
-      </nav>
+      <Navbar />
 
       {/* Page Content */}
       <div className="profile-content">
