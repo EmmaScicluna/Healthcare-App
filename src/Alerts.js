@@ -3,13 +3,10 @@ import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 import Modal from "react-modal";
 import "./cssPages/Alerts.css";
-import logo from "./images/caretrackLogo.png";
 import Navbar from "./Navbar";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
-
-
 
 Modal.setAppElement("#root");
 
@@ -84,7 +81,6 @@ const Alerts = () => {
     <div className="alerts-container">
       {/* 🔹 Navigation Bar */}
       <Navbar />
-
 
       {/* 🔹 Left-Aligned Title */}
       <h1 className="alerts-header-left">Alerts</h1>
