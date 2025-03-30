@@ -8,7 +8,8 @@ import PatientProfile from "./PatientProfile"; // Ensures individual patient pag
 import Tasks from "./Tasks"; // Tasks page
 import Pepper from "./Pepper"; // Pepper page
 import Exercise from "./Exercise"; // Exercise page  
-import Alerts from "./Alerts";       
+import Alerts from "./Alerts"; 
+import ForgotPassword from "./ForgotPassword"; // Forgot Password page      
 
 function AppNavigator() {
   return (
@@ -24,6 +25,7 @@ function AppNavigator() {
         <Route path="/pepper" element={<Pepper />} />
         <Route path="/exercise" element={<Exercise />} />
         <Route path="/alerts" element={<Alerts />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </Router>
   );
