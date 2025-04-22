@@ -77,25 +77,26 @@
   }
 
   /* Pagination */
-.pagination {
+  
+  .pagination {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    gap: 10px;
   }
   
   .page-button {
-    border: 1px solid #ddd;
-    background: white;
     padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
     cursor: pointer;
-    margin: 0 5px;
-    border-radius: 5px;
   }
   
   .page-button.active {
-    background: #1C3F71;
+    background-color: #007bff;
     color: white;
-    font-weight: bold;
+    border-color: #007bff;
   }
 
   /* Medication Intake Button */
