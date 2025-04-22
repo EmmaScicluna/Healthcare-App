@@ -55,19 +55,21 @@
   
   .exercise-container {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #f8f9fa;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 80px;
   }
+  
   
   .exercise-content {
     width: 90%;
     max-width: 1200px;
-    margin-top: 40px;
-  }
+    overflow-y: auto; 
+    flex: 1;
+    margin-top: 0;
+  }  
   
   .exercise-header {
     display: flex;
