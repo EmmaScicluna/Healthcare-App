@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 import "./cssPages/Patients.css";
-import logo from "./images/caretrackLogo.png";
 import dayjs from "dayjs"; // For handling date logic
 import Modal from "react-modal"; // Import Modal for custom popup
 import Navbar from "./Navbar";

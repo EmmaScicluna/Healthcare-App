@@ -62,7 +62,7 @@ const Register = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="signin-input"
+            className="register-input"
           />
           <input
             type="password"
@@ -70,7 +70,7 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="signin-input"
+            className="register-input"
           />
           <input
             type="password"
@@ -78,10 +78,10 @@ const Register = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            className="signin-input"
+            className="register-input"
           />
           {error && <p className="error">{error}</p>}
-          <button type="submit" className="signin-button2">REGISTER</button>
+          <button type="submit" className="register-button">REGISTER</button>
         </form>
         <p className="register-text">
           Already have an account? <span onClick={() => navigate('/signin')} className="register-link">Sign in</span>

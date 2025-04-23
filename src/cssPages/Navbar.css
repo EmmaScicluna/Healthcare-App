@@ -1,77 +1,140 @@
 /* Navbar Container */
 .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 12px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  /* Logo */
-  .navbar-logo {
-    height: 55px;
-  }
-  
-  /* Navigation Links */
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-links li {
-    position: relative;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    font-size: 1rem;
-    color: #1C3F71;
-    font-weight: 500;
-    transition: 0.3s ease;
-  }
-  
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Logout Button */
-  .logout-button {
-    background-color: transparent;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #1C3F71;
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-  
-  .logout-button:hover {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Alert Badge */
-  .alert-badge {
-    position: absolute;
-    top: -4px;
-    right: -12px;
-    background-color: red;
-    color: white;
-    font-size: 11px;
-    font-weight: normal;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 12px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Logo */
+.navbar-logo {
+  height: 55px;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #1C3F71;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Logout Button */
+.logout-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1C3F71;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.logout-button:hover {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Alert Badge */
+.alert-badge {
+  position: absolute;
+  top: -4px;
+  right: -12px;
+  background-color: red;
+  color: white;
+  font-size: 11px;
+  font-weight: normal;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Alert Notification Tab Positioning */
+.alerts-tab {
+  position: relative;
+}
+
+/* 🔹 Modal Overlay (used for logout confirmation) */
+.ReactModal__Overlay {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  z-index: 1000;
+}
+
+/* 🔹 Modal Styling */
+.modal {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+/* 🔹 Buttons inside modal */
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.confirm-button-2,
+.cancel-button-2 {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.confirm-button-2 {
+  background-color: #4caf50;
+  color: white;
+}
+
+.cancel-button-2 {
+  background-color: #e57373;
+  color: white;
+}
+
+.confirm-button-2:hover {
+  background-color: #388e3c;
+}
+
+.cancel-button-2:hover {
+  background-color: #c0392b;
+}
