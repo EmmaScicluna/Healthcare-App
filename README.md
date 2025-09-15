@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+Overview
+This web application is designed for caregivers to manage and monitor patient activity and health-related logs, all in connection with the Pepper robot’s tablet interface. To run the application locally, open the terminal and type npm install or sudo npm install, to install dependencies after they are installed run npm start or sudo npm start, depending on your system setup and permissions,. The app will open in your browser on http://localhost:3000.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A test caregiver account has already been registered for demonstration purposes. You can sign in using the following credentials:
+Email: test123@gmail.com
+Password: test12345
 
-## Available Scripts
+After signing in, you can explore all the different pages and sections of the website. Some content has already been added (such as in the Tasks and Alerts pages) to provide visual examples and guidance. For a better understanding of how the system works, you can also try interacting with the tablet interface (from Pepper) for example, confirming medication for a specific patient, logging an exercise, or submitting a help request. These actions will appear in real-time on the website, making it easier to visualise how data flows between Pepper and the caregiver platform.
 
-In the project directory, you can run:
+As a reminder, exercise logs and confirmed medication statuses are refreshed daily, since these are meant to be tracked on a daily basis. So, if you would like to test these features, you should log them from the HTML pages on Pepper’s tablet, then return to this website and refresh the page to view the updates.
 
-### `npm start`
+Pages and Features
+The Sign In and Register pages allow known caregivers to register or log in to the system. There is also a Forgot Password feature which is functional for users who need to reset their credentials.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+After signing in, you are taken to the Main Page, which includes a navigation bar that lets you easily access all other sections of the application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+As explained in the FYP write-up, the following are the main pages:
 
-### `npm test`
+Patients Page: Lists all patients along with their details. You can view their current medication list and see whether they’ve confirmed taking their medication, as logged via Pepper’s tablet interface. The confirmation resets to “No” every day so that daily monitoring remains accurate. Clicking on a patient opens the Patient Details Page, where you can view all personal and medical details of that patient. As a caregiver, you can also click the Edit button to update patient information or medication.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Tasks Page: A simple to-do list style page for caregivers to manage and keep track of daily tasks. A few example tasks have been added for visual reference.
 
-### `npm run build`
+Pepper Page: A help page designed to guide caregivers on how to use Pepper, including example voice commands and basic support.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Exercise Page: Displays logs of daily exercise activity completed by patients, pulled from Pepper's tablet. Like medication, these logs are refreshed daily, as exercises are intended to be done once per day.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Alerts Page: Displays all help requests submitted by patients from Pepper’s tablet interface. Caregivers can view, address, and delete alerts based on whether they’ve been handled.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Logout Button: Allows caregivers to safely sign out of their session when finished.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Style and Usability
+All pages have corresponding CSS files that ensure the website remains clear, consistent, and easy to use. The design was intentionally kept simple to promote usability and reduce cognitive load for busy caregivers.
